@@ -1,0 +1,62 @@
+{
+  "bindings": {
+    "invoices": "collections:csv"
+  },
+  "parameters": {
+    "rate": {
+      "type": "number",
+      "value": "0.1"
+    },
+    "threshold": {
+      "type": "number",
+      "value": "100"
+    },
+    "multiplier": {
+      "type": "number",
+      "value": "2"
+    },
+    "asof": {
+      "type": "date",
+      "value": "2026-06-30"
+    }
+  },
+  "assumptions": [
+    {
+      "status": "explicit_user_choice",
+      "description": "Tiered collection fee on paid invoices by asof date"
+    }
+  ],
+  "steps": [
+    {
+      "id": "eligible",
+      "kind": "sql",
+      "rule_ref": "User supplied collections policy 1",
+      "sql": "SELECT invoice, rep, CAST(gross AS DECIMAL(18,2)) AS gross, CAST(fx AS DECIMAL(18,4)) AS fx FROM {{invoices}} WHERE paid = true AND CAST(due AS DATE) <= CAST($asof AS DATE)"
+    },
+    {
+      "id": "fees",
+      "kind": "tiers",
+      "rule_ref": "Collections policy 2",
+      "source": "eligible",
+      "amount_column": "gross",
+      "rate_parameter": "rate",
+      "thresholds": [
+        "threshold"
+      ],
+      "multipliers": [
+        1,
+        "multiplier"
+      ],
+      "output_column": "fee"
+    },
+    {
+      "id": "converted",
+      "kind": "currency",
+      "rule_ref": "Collections policy 3",
+      "source": "fees",
+      "amount_column": "fee",
+      "rate_column": "fx",
+      "output_column": "local_fee"
+    }
+  ]
+}

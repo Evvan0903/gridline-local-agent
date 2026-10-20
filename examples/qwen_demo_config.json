@@ -1,0 +1,4 @@
+{
+  "ollama_url": "http://localhost:11434",
+  "baseline_manifest": "examples/model_comparison_protocol_v3_hotfix_release.json"
+}

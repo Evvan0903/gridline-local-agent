@@ -1,0 +1,6 @@
+{
+  "model": "qwen3:8b",
+  "test_model": "qwen3.8:27b",
+  "comparison_model": "qwen3:8b",
+  "ollama_url": "http://localhost:11434"
+}

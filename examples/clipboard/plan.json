@@ -1,0 +1,16 @@
+{
+  "review_month": "2026-06-01",
+  "window_days": 30,
+  "later_window_factor": "0.5",
+  "gtm_rate": "0.03",
+  "net_terms_factors": {"15": "1.2", "30": "1", "45": "0.9", "60": "0.7"},
+  "smb_scenario_multipliers": ["1.3", "1.5"],
+  "ramp_month_policy": "any_ramp_day_disables",
+  "rounding": "ROUND_HALF_UP",
+  "assumptions": [
+    {"id": "partial_month_ramp", "status": "requires_approval", "description": "For the conditional baseline, any ramp day disables monthly accelerators and SPIFF. Plan does not explicitly resolve a month in which ramp ends mid-month; alternate month-end policy is quantified."},
+    {"id": "rounding", "status": "requires_approval", "description": "Retain unrounded Decimal calculations, show USD and local currency rounded half-up to two decimals independently. Payroll rounding sequence is not specified."},
+    {"id": "actual_paid", "status": "missing_input", "description": "No actual paid statement was supplied. The baseline is plan-calculated, never labelled as actually paid."},
+    {"id": "extract_coverage", "status": "bounded_source", "description": "Use only supplied extract; required standard worked windows closing in June start no earlier than March. Historical supplied first-worked dates are never derived. GTM pre-anchor GSV remains bounded by provided postings."}
+  ]
+}

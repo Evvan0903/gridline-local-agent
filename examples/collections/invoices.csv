@@ -1,0 +1,4 @@
+invoice,rep,gross,fx,paid,due
+I1,P,150,1.25,true,2026-06-02
+I2,Q,80,1.25,true,2026-06-02
+I3,P,999,1.25,false,2026-06-02

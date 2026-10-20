@@ -1,0 +1,46 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.analyst/
+.analyst_*/
+
+# Credentials stay local. The example contains placeholders only.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Private case sources, generated deliverables, history and run traces.
+/data/
+/derived/
+/output/
+/outputs/
+/reports/
+/archive/
+/Clipboard_Health_Case_Study_Rules.md
+/test
+*.sqlite3
+*.sqlite3-*
+*.duckdb
+*.duckdb.wal
+
+# Prior approvals and machine/source-specific evaluation configuration are not reusable.
+/examples/luna_clipboard_authorized.py
+/examples/v2_cloud_synthetic.py
+/examples/model_comparison_protocol*.json
+/examples/v3_future_cloud_protocol.json
+
+# Local browser workspace and frontend build dependencies.
+.analyst_web/
+web/node_modules/
+web/dist/
+web/*.tsbuildinfo
+node_modules/
+node_modules
+.pnpm-store/
+coverage/
+.coverage
+htmlcov/

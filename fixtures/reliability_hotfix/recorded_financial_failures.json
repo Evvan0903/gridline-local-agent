@@ -1,0 +1,1163 @@
+{
+  "source": "Original extended Qwen run; regression data only, never a model prompt",
+  "attempts": [
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only; o3 (May) and o4 (refunded) excluded",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Duplicate cA customer mapping canonicalized (identical attributes, 0 conflicts)",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Missing FX (JPY) requires documented hold, not invented rate or zero",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Commission = 10% of eligible net USD where FX available",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5% (editable parameter)",
+            "status": "explicit_user_choice"
+          },
+          {
+            "description": "Local units = USD commission \u00d7 units_per_usd; never sum different currencies",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Round each output to cents",
+            "status": "governing_rule"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "net_usd"
+          },
+          {
+            "expression": {
+              "field": "commission_usd"
+            },
+            "id": "commission_usd"
+          },
+          {
+            "expression": {
+              "field": "commission_local"
+            },
+            "id": "commission_local"
+          },
+          {
+            "expression": {
+              "field": "scenario_usd"
+            },
+            "id": "scenario_usd"
+          },
+          {
+            "expression": {
+              "field": "scenario_local"
+            },
+            "id": "scenario_local"
+          },
+          {
+            "expression": {
+              "field": "delta_usd"
+            },
+            "id": "delta_usd"
+          },
+          {
+            "expression": {
+              "field": "fx_status"
+            },
+            "id": "fx_status"
+          },
+          {
+            "expression": {
+              "field": "currency"
+            },
+            "id": "currency"
+          },
+          {
+            "expression": {
+              "field": "customer_name"
+            },
+            "id": "customer_name"
+          },
+          {
+            "expression": {
+              "field": "order_date"
+            },
+            "id": "order_date"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Canonicalize identical duplicate customer mappings before joining; do not multiply revenue. Missing FX requires a documented hold, not an invented rate or zero. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies. Source data is synthetic. These written rules authorize a conditional model proposal, not payroll approval.",
+        "source_key": "order_id",
+        "totals": [
+          "commission_usd",
+          "commission_local",
+          "scenario_usd",
+          "scenario_local",
+          "delta_usd"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only; o3 (May) and o4 (refunded) excluded",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Duplicate cA customer mapping canonicalized (identical attributes, 0 conflicts)",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Missing FX (JPY) requires documented hold, not invented rate or zero",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Commission = 10% of eligible net USD where FX available",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5% (editable parameter)",
+            "status": "explicit_user_choice"
+          },
+          {
+            "description": "Local units = USD commission x units_per_usd; never sum different currencies",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Round each output to cents",
+            "status": "governing_rule"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "units_per_usd"
+          },
+          {
+            "expression": {
+              "field": "fx_status"
+            },
+            "id": "fx_status"
+          },
+          {
+            "expression": {
+              "field": "currency"
+            },
+            "id": "currency"
+          },
+          {
+            "expression": {
+              "field": "customer_name"
+            },
+            "id": "customer_name"
+          },
+          {
+            "expression": {
+              "field": "order_date"
+            },
+            "id": "order_date"
+          },
+          {
+            "expression": {
+              "field": "commission_usd"
+            },
+            "id": "commission_usd"
+          },
+          {
+            "expression": {
+              "field": "commission_local"
+            },
+            "id": "commission_local"
+          },
+          {
+            "expression": {
+              "field": "scenario_usd"
+            },
+            "id": "scenario_usd"
+          },
+          {
+            "expression": {
+              "field": "scenario_local"
+            },
+            "id": "scenario_local"
+          },
+          {
+            "expression": {
+              "field": "delta_usd"
+            },
+            "id": "delta_usd"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Canonicalize identical duplicate customer mappings before joining; do not multiply revenue. Missing FX requires a documented hold, not an invented rate or zero. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies. Source data is synthetic. These written rules authorize a conditional model proposal, not payroll approval.",
+        "source_key": "order_id",
+        "totals": [
+          "commission_usd",
+          "commission_local",
+          "scenario_usd",
+          "scenario_local",
+          "delta_usd"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only; o3 (May) and o4 (refunded) excluded",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Duplicate cA customer mapping canonicalized (identical attributes, 0 conflicts)",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Missing FX (JPY) requires documented hold, not invented rate or zero",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Commission = 10% of eligible net USD where FX available",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5% (editable parameter)",
+            "status": "explicit_user_choice"
+          },
+          {
+            "description": "Local units = USD commission x units_per_usd; never sum different currencies",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Round each output to cents",
+            "status": "governing_rule"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "units_per_usd"
+          },
+          {
+            "expression": {
+              "field": "fx_status"
+            },
+            "id": "fx_status"
+          },
+          {
+            "expression": {
+              "field": "currency"
+            },
+            "id": "currency"
+          },
+          {
+            "expression": {
+              "field": "customer_name"
+            },
+            "id": "customer_name"
+          },
+          {
+            "expression": {
+              "field": "order_date"
+            },
+            "id": "order_date"
+          },
+          {
+            "expression": {
+              "field": "commission_usd"
+            },
+            "id": "commission_usd"
+          },
+          {
+            "expression": {
+              "field": "commission_local"
+            },
+            "id": "commission_local"
+          },
+          {
+            "expression": {
+              "field": "scenario_usd"
+            },
+            "id": "scenario_usd"
+          },
+          {
+            "expression": {
+              "field": "scenario_local"
+            },
+            "id": "scenario_local"
+          },
+          {
+            "expression": {
+              "field": "delta_usd"
+            },
+            "id": "delta_usd"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Canonicalize identical duplicate customer mappings before joining; do not multiply revenue. Missing FX requires a documented hold, not an invented rate or zero. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies. Source data is synthetic. These written rules authorize a conditional model proposal, not payroll approval.",
+        "source_key": "order_id",
+        "totals": [
+          "commission_usd",
+          "commission_local",
+          "scenario_usd",
+          "scenario_local",
+          "delta_usd"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only; o3 (May) and o4 (refunded) excluded",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Duplicate cA customer mapping canonicalized (identical attributes, 0 conflicts)",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Missing FX (JPY) requires documented hold, not invented rate or zero",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Commission = 10% of eligible net USD where FX available",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5% (editable parameter)",
+            "status": "explicit_user_choice"
+          },
+          {
+            "description": "Local units = USD commission x units_per_usd; never sum different currencies",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Round each output to cents",
+            "status": "governing_rule"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "units_per_usd"
+          },
+          {
+            "expression": {
+              "field": "fx_status"
+            },
+            "id": "fx_status"
+          },
+          {
+            "expression": {
+              "field": "currency"
+            },
+            "id": "currency"
+          },
+          {
+            "expression": {
+              "field": "customer_name"
+            },
+            "id": "customer_name"
+          },
+          {
+            "expression": {
+              "field": "order_date"
+            },
+            "id": "order_date"
+          },
+          {
+            "expression": {
+              "mul": [
+                "net_usd",
+                "base_rate"
+              ]
+            },
+            "id": "commission_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "commission_usd",
+                "units_per_usd"
+              ]
+            },
+            "id": "commission_local"
+          },
+          {
+            "expression": {
+              "mul": [
+                "net_usd",
+                "scenario_rate"
+              ]
+            },
+            "id": "scenario_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "scenario_usd",
+                "units_per_usd"
+              ]
+            },
+            "id": "scenario_local"
+          },
+          {
+            "expression": {
+              "sub": [
+                "scenario_usd",
+                "commission_usd"
+              ]
+            },
+            "id": "delta_usd"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Canonicalize identical duplicate customer mappings before joining; do not multiply revenue. Missing FX requires a documented hold, not an invented rate or zero. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies. Source data is synthetic. These written rules authorize a conditional model proposal, not payroll approval.",
+        "source_key": "order_id",
+        "totals": [
+          "commission_usd",
+          "commission_local",
+          "scenario_usd",
+          "scenario_local",
+          "delta_usd"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only; o3 (May) and o4 (refunded) excluded",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Duplicate cA customer mapping canonicalized (identical attributes, 0 conflicts)",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Missing FX (JPY) requires documented hold, not invented rate or zero",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Commission = 10% of eligible net USD where FX available",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5% (editable parameter)",
+            "status": "explicit_user_choice"
+          },
+          {
+            "description": "Local units = USD commission x units_per_usd; never sum different currencies",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Round each output to cents",
+            "status": "governing_rule"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "units_per_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "net_usd",
+                "base_rate"
+              ]
+            },
+            "id": "commission_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "commission_usd",
+                "units_per_usd"
+              ]
+            },
+            "id": "commission_local"
+          },
+          {
+            "expression": {
+              "mul": [
+                "net_usd",
+                "scenario_rate"
+              ]
+            },
+            "id": "scenario_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "scenario_usd",
+                "units_per_usd"
+              ]
+            },
+            "id": "scenario_local"
+          },
+          {
+            "expression": {
+              "sub": [
+                "scenario_usd",
+                "commission_usd"
+              ]
+            },
+            "id": "delta_usd"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Canonicalize identical duplicate customer mappings before joining; do not multiply revenue. Missing FX requires a documented hold, not an invented rate or zero. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies. Source data is synthetic. These written rules authorize a conditional model proposal, not payroll approval.",
+        "source_key": "order_id",
+        "totals": [
+          "commission_usd",
+          "commission_local",
+          "scenario_usd",
+          "scenario_local",
+          "delta_usd"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5%",
+            "status": "explicit_user_choice"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "units_per_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "net_usd",
+                "base_rate"
+              ]
+            },
+            "id": "comm_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "comm_usd",
+                "units_per_usd"
+              ]
+            },
+            "id": "comm_local"
+          },
+          {
+            "expression": {
+              "mul": [
+                "net_usd",
+                "scenario_rate"
+              ]
+            },
+            "id": "scen_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "scen_usd",
+                "units_per_usd"
+              ]
+            },
+            "id": "scen_local"
+          },
+          {
+            "expression": {
+              "sub": [
+                "scen_usd",
+                "comm_usd"
+              ]
+            },
+            "id": "delta"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies.",
+        "source_key": "order_id",
+        "totals": [
+          "comm_usd",
+          "comm_local",
+          "scen_usd",
+          "scen_local",
+          "delta"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "9783e1d604f55f78",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5%",
+            "status": "explicit_user_choice"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "f_net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "f_units_per_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_net_usd",
+                "base_rate"
+              ]
+            },
+            "id": "f_comm_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_comm_usd",
+                "f_units_per_usd"
+              ]
+            },
+            "id": "f_comm_local"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_net_usd",
+                "scenario_rate"
+              ]
+            },
+            "id": "f_scen_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_scen_usd",
+                "f_units_per_usd"
+              ]
+            },
+            "id": "f_scen_local"
+          },
+          {
+            "expression": {
+              "sub": [
+                "f_scen_usd",
+                "f_comm_usd"
+              ]
+            },
+            "id": "f_delta"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies.",
+        "source_key": "order_id",
+        "totals": [
+          "f_comm_usd",
+          "f_comm_local",
+          "f_scen_usd",
+          "f_scen_local",
+          "f_delta"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "query_id": "b764a4f53e7e4687",
+      "spec": {
+        "assumptions": [
+          {
+            "description": "June 2026 earned orders only; o3 (May) and o4 (refunded) excluded",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Duplicate cA customer mapping canonicalized (identical attributes, 0 conflicts)",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Missing FX (JPY) requires documented hold, not invented rate or zero",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Commission = 10% of eligible net USD where FX available",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Scenario rate = 12.5% (editable parameter)",
+            "status": "explicit_user_choice"
+          },
+          {
+            "description": "Local units = USD commission x units_per_usd; never sum different currencies",
+            "status": "governing_rule"
+          },
+          {
+            "description": "Round each output to cents",
+            "status": "governing_rule"
+          }
+        ],
+        "calculations": [
+          {
+            "expression": {
+              "field": "net_usd"
+            },
+            "id": "f_net_usd"
+          },
+          {
+            "expression": {
+              "field": "units_per_usd"
+            },
+            "id": "f_units_per_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_net_usd",
+                "base_rate"
+              ]
+            },
+            "id": "f_comm_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_comm_usd",
+                "f_units_per_usd"
+              ]
+            },
+            "id": "f_comm_local"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_net_usd",
+                "scenario_rate"
+              ]
+            },
+            "id": "f_scen_usd"
+          },
+          {
+            "expression": {
+              "mul": [
+                "f_scen_usd",
+                "f_units_per_usd"
+              ]
+            },
+            "id": "f_scen_local"
+          },
+          {
+            "expression": {
+              "sub": [
+                "f_scen_usd",
+                "f_comm_usd"
+              ]
+            },
+            "id": "f_delta"
+          }
+        ],
+        "parameters": {
+          "base_rate": {
+            "description": "Base commission rate (10%)",
+            "value": 0.1
+          },
+          "scenario_rate": {
+            "description": "Scenario commission rate (12.5%)",
+            "value": 0.125
+          }
+        },
+        "rule_ref": "Governing text: June 2026 earned orders only. Canonicalize identical duplicate customer mappings before joining; do not multiply revenue. Missing FX requires a documented hold, not an invented rate or zero. Commission is 10% of eligible net USD where FX is available; local units = USD commission times units_per_usd. Scenario changes commission to 12.5% (editable rate parameter). Round each output to cents. Never sum different local currencies. Source data is synthetic. These written rules authorize a conditional model proposal, not payroll approval.",
+        "source_key": "order_id",
+        "totals": [
+          "f_comm_usd",
+          "f_comm_local",
+          "f_scen_usd",
+          "f_scen_local",
+          "f_delta"
+        ],
+        "version": 1
+      }
+    }
+  ],
+  "query_results": {
+    "1f8ae53225c9f689": {
+      "columns": [
+        "order_id",
+        "customer_id",
+        "order_date",
+        "net_usd",
+        "status"
+      ],
+      "rows": [
+        [
+          "o1",
+          "cA",
+          "2026-06-05",
+          120,
+          "earned"
+        ],
+        [
+          "o2",
+          "cB",
+          "2026-06-12",
+          240,
+          "earned"
+        ],
+        [
+          "o3",
+          "cA",
+          "2026-05-31",
+          90,
+          "earned"
+        ],
+        [
+          "o4",
+          "cA",
+          "2026-06-19",
+          50,
+          "refunded"
+        ],
+        [
+          "o5",
+          "cC",
+          "2026-06-20",
+          80,
+          "earned"
+        ]
+      ]
+    },
+    "d09b77fb3095e0b9": {
+      "columns": [
+        "customer_id",
+        "customer_name",
+        "currency"
+      ],
+      "rows": [
+        [
+          "cA",
+          "Synthetic A",
+          "USD"
+        ],
+        [
+          "cA",
+          "Synthetic A",
+          "USD"
+        ],
+        [
+          "cB",
+          "Synthetic B",
+          "EUR"
+        ],
+        [
+          "cC",
+          "Synthetic C",
+          "JPY"
+        ]
+      ]
+    },
+    "75bbf02a38a70f4f": {
+      "columns": [
+        "currency",
+        "units_per_usd"
+      ],
+      "rows": [
+        [
+          "EUR",
+          "0.9"
+        ],
+        [
+          "USD",
+          "1.0"
+        ]
+      ]
+    },
+    "9783e1d604f55f78": {
+      "columns": [
+        "order_id",
+        "customer_id",
+        "customer_name",
+        "currency",
+        "order_date",
+        "net_usd",
+        "units_per_usd",
+        "fx_status",
+        "commission_usd",
+        "commission_local",
+        "scenario_usd",
+        "scenario_local",
+        "delta_usd"
+      ],
+      "rows": [
+        [
+          "o1",
+          "cA",
+          "Synthetic A",
+          "USD",
+          "2026-06-05",
+          120,
+          "1.0",
+          "PAYABLE",
+          "12.00",
+          "12.00",
+          "15.00",
+          "15.00",
+          "3.00"
+        ],
+        [
+          "o2",
+          "cB",
+          "Synthetic B",
+          "EUR",
+          "2026-06-12",
+          240,
+          "0.9",
+          "PAYABLE",
+          "24.00",
+          "21.60",
+          "30.00",
+          "27.00",
+          "6.00"
+        ],
+        [
+          "o5",
+          "cC",
+          "Synthetic C",
+          "JPY",
+          "2026-06-20",
+          80,
+          null,
+          "FX_HOLD",
+          "8.00",
+          null,
+          "10.00",
+          null,
+          "2.00"
+        ]
+      ]
+    },
+    "79ab124b14ac6faf": {
+      "columns": [
+        "order_id",
+        "customer_id",
+        "customer_name",
+        "currency",
+        "net_usd",
+        "hold_reason"
+      ],
+      "rows": [
+        [
+          "o5",
+          "cC",
+          "Synthetic C",
+          "JPY",
+          80,
+          "MISSING_FX"
+        ]
+      ]
+    },
+    "b764a4f53e7e4687": {
+      "columns": [
+        "order_id",
+        "customer_id",
+        "customer_name",
+        "currency",
+        "order_date",
+        "net_usd",
+        "units_per_usd",
+        "fx_status",
+        "commission_usd",
+        "commission_local",
+        "scenario_usd",
+        "scenario_local",
+        "delta_usd"
+      ],
+      "rows": [
+        [
+          "o1",
+          "cA",
+          "Synthetic A",
+          "USD",
+          "2026-06-05",
+          120.0,
+          1.0,
+          "PAYABLE",
+          12.0,
+          12.0,
+          15.0,
+          15.0,
+          3.0
+        ],
+        [
+          "o2",
+          "cB",
+          "Synthetic B",
+          "EUR",
+          "2026-06-12",
+          240.0,
+          0.9,
+          "PAYABLE",
+          24.0,
+          21.6,
+          30.0,
+          27.0,
+          6.0
+        ],
+        [
+          "o5",
+          "cC",
+          "Synthetic C",
+          "JPY",
+          "2026-06-20",
+          80.0,
+          null,
+          "FX_HOLD",
+          8.0,
+          null,
+          10.0,
+          null,
+          2.0
+        ]
+      ]
+    }
+  }
+}
